@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define SIZE 2048
 
-unsigned char rotate(unsigned char c);
+unsigned char rotate(unsigned char c, int bits);
 int bits(unsigned char);
 
 int main()
@@ -13,7 +13,7 @@ int main()
 	int keyLength = 0;
 	int keySum = 0;
 
-//Message and key I/O
+	//Message and key I/O
 	while( (character = getchar()) != 255 && character != EOF
 	&& messageLength < SIZE)
 	{
@@ -32,7 +32,7 @@ int main()
 		++keyLength;
 	}
 
-//tiling
+	//tiling
 	for(int i = 0; i < messageLength; ++i)
 	{
 		if( i >= keyLength)
@@ -41,7 +41,7 @@ int main()
 		}
 	}
 
-//rotating
+	//chaining
 	keySum = key[messageLength - 1];
 	keySum %= messageLength;
 	for(int i = 0; i < messageLength; ++i)
@@ -54,12 +54,12 @@ int main()
 		{
 			key[i] = rotate(key[i]^key[keySum], bits(key[i-1]);
 		}
-		
+
 		keySum += key[i];
 		keySum %= messageLength;
 	}
 
-//printing the message and the tiled key for testing purposes
+	//printing the message and the tiled key for testing purposes
 	for( int j = 0; j < messageLength; ++j)
 	{
 		char c = message[j];
@@ -75,12 +75,21 @@ int main()
 	printf("\n\n\n");
 }
 
-unsigned char rotate(unsigned char c)
+//rotate the 7 least significant bits in c by n
+unsigned char rotate(unsigned char c, int n)
 {
 
 }
 
-int bits(unsigned char)
+//counts the number of ones in the bit representation of c
+int bits(unsigned char c)
 {
+	int count = 0;
 
+	while(c)
+	{
+		count += c & 1;
+		c >>= 1;
+	}
+	return count;
 }
