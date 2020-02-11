@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define SIZE 2048
+#define DELIM 255
 
 unsigned char rotate(unsigned char c, int bits);
 int bits(unsigned char);
@@ -14,7 +15,7 @@ int main()
 	int keySum = 0;
 
 	//Message and key I/O
-	while( (character = getchar()) != 255 && character != EOF
+	while( (character = getchar()) != DELIM && character != EOF
 	&& messageLength < SIZE)
 	{
 		message[messageLength] = character;
@@ -63,22 +64,7 @@ int main()
 	{
 		putchar(message[i] ^ key[i]);
 	}
-
-	//printing the message and the tiled key for testing purposes
-	// for( int j = 0; j < messageLength; ++j)
-	// {
-	// 	char c = message[j];
-	// 	putchar(c);
-	// }
-	// printf("\n\n\n");
-	//
-	// for( int j = 0; j < messageLength; ++j)
-	// {
-	// 	char c = key[j];
-	// 	putchar(c);
-	// }
-	// printf("\n\n\n");
-
+	
 	return 0;
 }
 
@@ -86,7 +72,7 @@ int main()
 unsigned char rotate(unsigned char c, int n)
 {
 	n %= 7;
-	return (c >> n)|(c << (7 - n));
+	return 0x7F & ((c >> n)|(c << (7 - n)));
 }
 
 //counts the number of ones in the bit representation of c
