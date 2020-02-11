@@ -48,37 +48,45 @@ int main()
 	{
 		if ( i == 0)
 		{
-			key[i] = rotate(key[i]^key[keySum], bits(key[messageLength-1]);
+			key[i] = rotate(key[i]^key[keySum], bits(key[messageLength-1]));
 		}
 		else
 		{
-			key[i] = rotate(key[i]^key[keySum], bits(key[i-1]);
+			key[i] = rotate(key[i]^key[keySum], bits(key[i-1]));
 		}
 
 		keySum += key[i];
 		keySum %= messageLength;
 	}
 
-	//printing the message and the tiled key for testing purposes
-	for( int j = 0; j < messageLength; ++j)
+	for( int i = 0; i < messageLength; ++i)
 	{
-		char c = message[j];
-		putchar(c);
+		putchar(message[i] ^ key[i]);
 	}
-	printf("\n\n\n");
 
-	for( int j = 0; j < messageLength; ++j)
-	{
-		char c = key[j];
-		putchar(c);
-	}
-	printf("\n\n\n");
+	//printing the message and the tiled key for testing purposes
+	// for( int j = 0; j < messageLength; ++j)
+	// {
+	// 	char c = message[j];
+	// 	putchar(c);
+	// }
+	// printf("\n\n\n");
+	//
+	// for( int j = 0; j < messageLength; ++j)
+	// {
+	// 	char c = key[j];
+	// 	putchar(c);
+	// }
+	// printf("\n\n\n");
+
+	return 0;
 }
 
 //rotate the 7 least significant bits in c by n
 unsigned char rotate(unsigned char c, int n)
 {
-
+	n %= 7;
+	return (c >> n)|(c << (7 - n));
 }
 
 //counts the number of ones in the bit representation of c
