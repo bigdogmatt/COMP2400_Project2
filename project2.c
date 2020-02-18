@@ -123,11 +123,7 @@ This function rotates the 7 least significant bits in the character c by n. We
 first mod n by 7 because rotating the value by 7 is the same as doing nothing.
 We then shift the bits in c to the right by n and bitwise OR that with the bits
 in c shifted to the left by 7 - n. We then bitwise AND this result with 0x7F
-<<<<<<< HEAD
 which is a value with ones in the 7 least significant bits and a 0 in the
-=======
-which is a value with a 7 ones in the 7 least significant bits and a 0 in the
->>>>>>> 5e13995f26258bce67868e61986b79aec72f381d
 8th bit. This removes any 1 that ends up in the 8th bit.
 **********************/
 unsigned char rotate(unsigned char c, int n)
