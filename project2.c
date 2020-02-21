@@ -22,11 +22,11 @@ key tiling, chaining, and the final encryption
 */
 int main()
 {
-	unsigned char message[SIZE]; //Array to store the message
-	unsigned char key[SIZE]; //Array to store the key
-	int character; //Variable to store the current character
-	int messageLength = 0; //Variable to keep track of the message length
-	int keyLength = 0; //Variable to keep track of the key length
+	unsigned char message[SIZE];
+	unsigned char key[SIZE];
+	int character;
+	int messageLength = 0;
+	int keyLength = 0; 
 	int keySum = 0; //Variable to store the total of the processed key characters
 
 	//Message and key I/O:
